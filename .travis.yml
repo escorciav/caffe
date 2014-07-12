@@ -39,8 +39,8 @@ branches:
 notifications:
   email:
     recipients:
-      - huy@huyng.com
-    on_success: change
+      - caffe-dev@googlegroups.com
+    on_success: always
     on_failure: always
   irc:
     channels:
