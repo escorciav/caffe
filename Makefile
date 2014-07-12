@@ -282,7 +282,7 @@ SUPERCLEAN_EXTS := .so .a .o .bin .testbin .pb.cc .pb.h _pb2.py .cuo
 # Define build targets
 ##############################
 .PHONY: all test clean linecount lint tools examples $(DIST_ALIASES) \
-	py mat py$(PROJECT) mat$(PROJECT) proto runtest \
+	py mat py$(PROJECT) mat$(PROJECT) proto runtest runtestnogpu \
 	superclean supercleanlist supercleanfiles warn
 
 all: $(NAME) $(STATIC_NAME) tools examples
@@ -342,6 +342,9 @@ $(MAT$(PROJECT)_SO): $(MAT$(PROJECT)_SRC) $(STATIC_NAME)
 
 runtest: $(TEST_ALL_BIN)
 	$(TEST_ALL_BIN) $(TEST_GPUID) --gtest_shuffle
+
+runtestnogpu: $(TEST_ALL_BIN)
+	$(TEST_ALL_BIN) --gtest_shuffle --gtest_filter="-*GPU*"
 
 warn: $(EMPTY_WARN_REPORT)
 
